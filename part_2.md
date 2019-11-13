@@ -1,0 +1,1 @@
+Survey relevant academic literature on the topic and write a one-page or less summary of findings. The survey should include a summary of various significant approaches on the task, including citations. Refer to the “Related Literature” section of any of the academic papers discussed in class as an example of what the literature survey should contain.  

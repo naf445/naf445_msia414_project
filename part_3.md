@@ -1,0 +1,1 @@
+Determine and describe the approach/method you have chosen on your choice of NLP topic/task. Note that you might need to try out several techniques before settling on an approach. Run relevant experiments and record results. Write a one-to-two page description of 1) the method and 2) the results of your experiments.
