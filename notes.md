@@ -60,3 +60,16 @@ and whatever other parameters you want to specify!
 your conda environment is called
 
 text-project
+
+_____
+
+text analytics project:
+
+currently the only version is on GitHub
+you will have to put a copy on jupyter hub and do all your editing and pre-processing and everything there and then you can go to deepdish and clone to there and you should have environments on both i guess! 
+
+but essentially there’s 3 parts
+- Part one on jupyter hub, grabbing and preprocessing data
+- Part 2 on DD2, pre-train bert
+- Part 3 on jupyter hub i guess or follow directions for how to do this, which is do rest of app set up and deployment
+
