@@ -73,3 +73,5 @@ but essentially there’s 3 parts
 - Part 2 on DD2, pre-train bert
 - Part 3 on jupyter hub i guess or follow directions for how to do this, which is do rest of app set up and deployment
 
+- BERT embeddings can take a lot of dimensions, they capture things like semantics or syntax, so you can actually do another transformation on the word embeddings from BERT to get the semantic embeddings, separate from the syntactical embeddings. But this is dependent on what you want to match a users input with!
+
