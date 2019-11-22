@@ -3,8 +3,6 @@ import os
 ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
 import sys
 sys.path.append(os.path.join(ROOT, 'src', 'helpers'))
-import argparse
-import datetime
 import logging
 import logging.config
 import yaml
@@ -15,7 +13,7 @@ with open(os.path.join(ROOT, 'config', 'config.yml'), "r") as yml_file:
     logging.config.fileConfig(os.path.join(
         ROOT, config['logger']), disable_existing_loggers=False)
     logger = logging.getLogger(__name__)
-    config = config['src']['clean_data']
+    config = config['src']['get-data']
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

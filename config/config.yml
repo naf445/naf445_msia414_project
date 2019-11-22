@@ -1,7 +1,14 @@
 logger: config/logging_local.conf
 src:
     helpers:
-    clean_data:
-        data_load:
-        functions:
-        data_store:
+    get_data:
+        text_urls:
+            gita: "https://www.gutenberg.org/files/2388/2388-h/2388-h.htm"
+            analects: "http://www.gutenberg.org/cache/epub/3330/pg3330.txt"
+            egypt: "https://www.gutenberg.org/files/28282/28282-8.txt"
+            tibet: "https://archive.org/stream/TheTibetanBookOfTheDead/The-Tibetan-Book-of-the-Dead_djvu.txt"
+        out_files:
+            gita: gita_raw.txt
+            analects: analects_raw.txt
+            egypt: egypt_raw.txt
+            tibet: tibet_raw.txt
