@@ -53,7 +53,7 @@ transfer model to jupyter hub and do everything else from there, not local!
 to run on deepdish, you need to set environmental variable, 
 and eventually run 
 
-python timo_pretraining.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train
+```hyperdash run -n 'BERT_pretrain' python pretraining.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE```
 
 and whatever other parameters you want to specify!
 
