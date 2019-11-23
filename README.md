@@ -67,14 +67,14 @@ python 2-create-combined-corpus.py
 source activate text-project-gpu
 ```
 
-8 ) 
+8 ) run from root directory
 ```bash
-source pre_train_settings.sh
+source config/pre_train_settings.sh
 ```
 
-9 )
+9 ) Run from root directory
 ```bash
-hyperdash run -n 'BERT_pretrain' python pretraining.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE
+hyperdash run -n 'BERT_pretrain' python src/pretraining.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE
 ```
 
 10 ) Send pretrained religioBERT to CPU
