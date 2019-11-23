@@ -1,6 +1,7 @@
 logger: config/logging_local.conf
 src:
     helpers:
+        data_clean:
     get_data:
         text_urls:
             gita: "https://www.gutenberg.org/files/2388/2388-h/2388-h.htm"
@@ -12,3 +13,42 @@ src:
             analects: analects_raw.txt
             egypt: egypt_raw.txt
             tibet: tibet_raw.txt
+    create_combined_corpus:
+        analects:
+            in_path: analects_raw.txt
+            start_line: 400
+            end_line: 3549
+        bible:
+            in_path: bible_raw.txt
+            start_line: 40
+            end_line: 99850
+        buddha:
+            in_path: buddha_raw.txt
+            start_line: 531
+            end_line: 9535
+        egypt:
+            in_path: egypt_raw.txt
+            start_line: 375
+            end_line: 14433
+        gita:
+            in_path: gita_raw.txt
+            start_line: 260
+            end_line: 3541
+        meditations:
+            in_path: meditations_raw.txt
+            start_line: 556
+            end_line: 5715
+        mormon:
+            in_path: mormon_raw.txt
+            start_line: 44
+            end_line: 39914
+        quran:
+            in_path: quran_raw.txt
+            start_line: 1280
+            end_line: 26875
+        tibet:
+            in_path: tibet_raw.txt
+            start_line: 403
+            end_line: 3693
+        out_path: combined_and_cleaned.txt
+            
