@@ -16,7 +16,7 @@ with open(os.path.join(ROOT, 'config', 'config.yml'), "r") as yml_file:
     logging.config.fileConfig(os.path.join(
         ROOT, config['logger']), disable_existing_loggers=False)
     logger = logging.getLogger(__name__)
-    config = config['src']['create_combined_corpus']
+    config = config['src']['create_cleaned_texts']
 
 if __name__ == '__main__':
     
@@ -27,6 +27,9 @@ if __name__ == '__main__':
                           ending_line=config['analects']['end_line'])
     logger.info("First 3 lines:\n{}".format(analects[:3]))
     logger.info("Last 3 lines:\n{}".format(analects[-3:]))
+    with open(os.path.join(ROOT, 'data', config['analects']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(analects))
+    logger.info("Saved Cleaned Analects to {}".format(config['analects']['out_path']))
     
     logger.info("Import Bible")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['bible']['in_path']), 'r') as file:
@@ -35,6 +38,14 @@ if __name__ == '__main__':
                           ending_line=config['bible']['end_line'])
     logger.info("First 3 lines:\n{}".format(bible[:3]))
     logger.info("Last 3 lines:\n{}".format(bible[-3:]))
+    OT = bible[:57427]
+    NT = bible[57427:]
+    with open(os.path.join(ROOT, 'data', config['bible']['out_path_OT']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(OT))
+    logger.info("Saved Cleaned bible_OT to {}".format(config['bible']['out_path_OT']))
+    with open(os.path.join(ROOT, 'data', config['bible']['out_path_NT']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(NT))
+    logger.info("Saved Cleaned bible_NT to {}".format(config['bible']['out_path_NT']))
     
     logger.info("Import Buddha")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['buddha']['in_path']), 'r') as file:
@@ -43,6 +54,9 @@ if __name__ == '__main__':
                           ending_line=config['buddha']['end_line'])
     logger.info("First 3 lines:\n{}".format(buddha[:3]))
     logger.info("Last 3 lines:\n{}".format(buddha[-3:]))
+    with open(os.path.join(ROOT, 'data', config['buddha']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(buddha))
+    logger.info("Saved Cleaned Buddha to {}".format(config['buddha']['out_path']))
     
     logger.info("Import Egypt")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['egypt']['in_path']), 'r') as file:
@@ -51,6 +65,9 @@ if __name__ == '__main__':
                           ending_line=config['egypt']['end_line'])
     logger.info("First 3 lines:\n{}".format(egypt[:3]))
     logger.info("Last 3 lines:\n{}".format(egypt[-3:]))
+    with open(os.path.join(ROOT, 'data', config['egypt']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(egypt))
+    logger.info("Saved Cleaned Egypt to {}".format(config['egypt']['out_path']))
     
     logger.info("Import Gita")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['gita']['in_path']), 'r') as file:
@@ -59,6 +76,9 @@ if __name__ == '__main__':
                           ending_line=config['gita']['end_line'])
     logger.info("First 3 lines:\n{}".format(gita[:3]))
     logger.info("Last 3 lines:\n{}".format(gita[-3:]))
+    with open(os.path.join(ROOT, 'data', config['gita']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(gita))
+    logger.info("Saved Cleaned Gita to {}".format(config['gita']['out_path']))
     
     logger.info("Import Meditations")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['meditations']['in_path']), 'r') as file:
@@ -68,6 +88,9 @@ if __name__ == '__main__':
                                         ending_line=config['meditations']['end_line'])
     logger.info("First 3 lines:\n{}".format(meditations[:3]))
     logger.info("Last 3 lines:\n{}".format(meditations[-3:]))
+    with open(os.path.join(ROOT, 'data', config['meditations']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(meditations))
+    logger.info("Saved Cleaned meditations to {}".format(config['meditations']['out_path']))
     
     logger.info("Import Mormon")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['mormon']['in_path']), 'r') as file:
@@ -76,6 +99,9 @@ if __name__ == '__main__':
                           ending_line=config['mormon']['end_line'])
     logger.info("First 3 lines:\n{}".format(mormon[:3]))
     logger.info("Last 3 lines:\n{}".format(mormon[-3:]))
+    with open(os.path.join(ROOT, 'data', config['mormon']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(mormon))
+    logger.info("Saved Cleaned mormon to {}".format(config['mormon']['out_path']))
     
     logger.info("Import Quran")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['quran']['in_path']), 'r') as file:
@@ -84,6 +110,9 @@ if __name__ == '__main__':
                           ending_line=config['quran']['end_line'])
     logger.info("First 3 lines:\n{}".format(quran[:3]))
     logger.info("Last 3 lines:\n{}".format(quran[-3:]))
+    with open(os.path.join(ROOT, 'data', config['quran']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(quran))
+    logger.info("Saved Cleaned quran to {}".format(config['quran']['out_path']))
     
     logger.info("Import Tibet")
     with open(os.path.join(ROOT, 'data', 'raw_data', config['tibet']['in_path']), 'r') as file:
@@ -92,6 +121,9 @@ if __name__ == '__main__':
                           ending_line=config['tibet']['end_line'])
     logger.info("First 3 lines:\n{}".format(tibet[:3]))
     logger.info("Last 3 lines:\n{}".format(tibet[-3:]))
+    with open(os.path.join(ROOT, 'data', config['tibet']['out_path']), "w") as cleaned_file:
+        cleaned_file.write('\n'.join(tibet))
+    logger.info("Saved Cleaned Anatibetlects to {}".format(config['tibet']['out_path']))
 
     combined_and_cleaned = analects+bible+buddha+egypt+gita+meditations+mormon+quran+tibet
     combined_and_cleaned = '\n'.join(combined_and_cleaned)

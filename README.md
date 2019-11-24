@@ -22,7 +22,7 @@ The data comes from 2 didfferent sources. One is a kaggle page with 5 of the tex
 
 ### Compile cleaned_and_combined_corpus.txt
 
-### Contonue BERT pre-training
+### Continue BERT pre-training
 
 
 ## Setting Up the App from Start 2 Finish
@@ -53,12 +53,14 @@ mv data/raw_data/pg2680.txt data/raw_data/meditations_raw.txt;
 mv data/raw_data/pg2800.txt data/raw_data/quran_raw.txt;
 ```
 
-5 )
+5 ) Run from Root
 ```bash
-python 2-create-combined-corpus.py
+python src/2-create-cleaned-texts.py
 ```
 
-6 ) Send files to GPU machine
+6 )
+- Send file to GPU machine
+- Place newly created `data/cleaned_and_combined.txt` in same spot on GPU machine
 
 ### GPU Machine:
 
@@ -67,21 +69,46 @@ python 2-create-combined-corpus.py
 source activate text-project-gpu
 ```
 
-8 ) run from root directory
+8 ) Run from root directory
 ```bash
 source config/pre_train_settings.sh
 ```
 
 9 ) Run from root directory
 ```bash
-hyperdash run -n 'BERT_pretrain' python src/pretraining.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE
+hyperdash run -n 'BERT_pretrain' python src/3-pretrain-religioBERT.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE
 ```
 
-10 ) Send pretrained religioBERT to CPU
+10 ) Send the further pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
 
 ### CPU Machine:
 
-- XXXXXXXXXXXXXXX
+11 ) 
+- Now on CPU machine with religioBERT `pretraining_output/best/` folder in place, we will need to change this directory structure a bit in order to prepare things for generating our sentence embeddings using religioBERT.
+- First download one of the files, probably `bert-base-nli-mean-tokens.zip` from https://public.ukp.informatik.tu-darmstadt.de/reimers/sentence-transformers/v0.2/
+- Place this unzipped folder in a new folder, `data/bert-base-nli-mean-tokens/`
+- Delete everything from the 0_BERT folder within `data/bert-base-nli-mean-tokens/` **except** `sentence_bert_config.json`
+- Place everything that was in `pretraining_output/best` in `data/bert-base-nli-mean-tokens/0_BERT`
+- Delete the now empty `pretraining_output/best/`
+
+12 ) 
+```bash
+source activate text-project-cpu
+```
+
+13 ) Run from root directory
+```bash
+python src/4-score-and-store-texts-religioBERT.py
+```
+
+```bash
+python src/5-score-and-store-texts-baseBERT.py
+```
+
+14 ) Run from root directory
+```bash
+python src/6-get-query-neighbors.py --religious_text <RELIGIOUS_TEXT>
+```
 
 ## Data
 

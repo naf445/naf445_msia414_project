@@ -13,42 +13,81 @@ src:
             analects: analects_raw.txt
             egypt: egypt_raw.txt
             tibet: tibet_raw.txt
-    create_combined_corpus:
+    create_cleaned_texts:
         analects:
             in_path: analects_raw.txt
             start_line: 400
             end_line: 3549
+            out_path: cleaned_data/analects_cleaned.txt
         bible:
             in_path: bible_raw.txt
             start_line: 40
             end_line: 99850
+            out_path_OT: cleaned_data/bible_OT_cleaned.txt
+            out_path_NT: cleaned_data/bible_NT_cleaned.txt
         buddha:
             in_path: buddha_raw.txt
             start_line: 531
             end_line: 9535
+            out_path: cleaned_data/buddha_cleaned.txt
         egypt:
             in_path: egypt_raw.txt
             start_line: 375
             end_line: 14433
+            out_path: cleaned_data/egypt_cleaned.txt
         gita:
             in_path: gita_raw.txt
             start_line: 260
             end_line: 3541
+            out_path: cleaned_data/gita_cleaned.txt
         meditations:
             in_path: meditations_raw.txt
             start_line: 556
             end_line: 5715
+            out_path: cleaned_data/meditations_cleaned.txt
         mormon:
             in_path: mormon_raw.txt
             start_line: 44
             end_line: 39914
+            out_path: cleaned_data/mormon_cleaned.txt
         quran:
             in_path: quran_raw.txt
             start_line: 1280
             end_line: 26875
+            out_path: cleaned_data/quran_cleaned.txt
         tibet:
             in_path: tibet_raw.txt
             start_line: 403
             end_line: 3693
-        out_path: combined_and_cleaned.txt
-            
+            out_path: cleaned_data/tibet_cleaned.txt
+        out_path: cleaned_and_combined.txt
+    score_and_store_texts_religioBERT:
+        data_in_directory: data/cleaned_data/
+        model_directory: model/pretraining_output/
+        data_out_file_names:
+            - analects_religioBERT_embeddings.txt
+            - bible_OT_religioBERT_embeddings.txt
+            - bible_NT_religioBERT_embeddings.txt
+            - buddha_religioBERT_embeddings.txt
+            - egypt_religioBERT_embeddings.txt
+            - gita_religioBERT_embeddings.txt
+            - meditations_religioBERT_embeddings.txt
+            - mormon_religioBERT_embeddings.txt
+            - quran_religioBERT_embeddings.txt
+            - tibet_religioBERT_embeddings.txt
+        out_directory: 
+    score_and_store_texts_baseBERT:
+        data_in_directory: data/cleaned_data/
+        model_directory: model/pretraining_output/
+        data_out_file_names:
+            - analects_baseBERT_embeddings.txt
+            - bible_OT_baseBERT_embeddings.txt
+            - bible_NT_baseBERT_embeddings.txt
+            - buddha_baseBERT_embeddings.txt
+            - egypt_baseBERT_embeddings.txt
+            - gita_baseBERT_embeddings.txt
+            - meditations_baseBERT_embeddings.txt
+            - mormon_baseBERT_embeddings.txt
+            - quran_baseBERT_embeddings.txt
+            - tibet_baseBERT_embeddings.txt
+        out_directory: 

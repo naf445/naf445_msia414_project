@@ -3,3 +3,5 @@ data/*.csv
 data/*.txt
 *.ipynb
 data/raw_data/*.txt
+data/
+model/pretraining_output/
