@@ -23,7 +23,7 @@ with open(os.path.join(ROOT, 'config', 'config.yml'), "r") as yml_file:
 if __name__ == '__main__':
     
     os.environ["CUDA_VISIBLE_DEVICES"] = config['cuda_device']
-    device = torch.device("cuda" if torch.cuda.is_available())
+    device = torch.device("cuda")
     n_gpu = torch.cuda.device_count()
     
     # Load religioBERT or other model from Disk
