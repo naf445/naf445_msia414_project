@@ -66,16 +66,16 @@ src:
         model_directory: model/pretraining_output/
         data_out_file_names:
             - analects_religioBERT_embeddings.txt
-            - bible_OT_religioBERT_embeddings.txt
-            - bible_NT_religioBERT_embeddings.txt
-            - buddha_religioBERT_embeddings.txt
-            - egypt_religioBERT_embeddings.txt
-            - gita_religioBERT_embeddings.txt
-            - meditations_religioBERT_embeddings.txt
-            - mormon_religioBERT_embeddings.txt
-            - quran_religioBERT_embeddings.txt
-            - tibet_religioBERT_embeddings.txt
-        out_directory: 
+#             - bible_OT_religioBERT_embeddings.txt
+#             - bible_NT_religioBERT_embeddings.txt
+#             - buddha_religioBERT_embeddings.txt
+#             - egypt_religioBERT_embeddings.txt
+#             - gita_religioBERT_embeddings.txt
+#             - meditations_religioBERT_embeddings.txt
+#             - mormon_religioBERT_embeddings.txt
+#             - quran_religioBERT_embeddings.txt
+#             - tibet_religioBERT_embeddings.txt
+        cuda_device: "2"
     score_and_store_texts_baseBERT:
         data_in_directory: data/cleaned_data/
         model_directory: model/pretraining_output/
@@ -90,4 +90,3 @@ src:
             - mormon_baseBERT_embeddings.txt
             - quran_baseBERT_embeddings.txt
             - tibet_baseBERT_embeddings.txt
-        out_directory: 
