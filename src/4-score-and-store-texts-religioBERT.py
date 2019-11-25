@@ -25,7 +25,7 @@ if __name__ == '__main__':
     
     os.environ["CUDA_VISIBLE_DEVICES"] = str(config['cuda_device'])
     logger.info('CUDA_VISIBLE_DEVICES: {}'.format(os.environ["CUDA_VISIBLE_DEVICES"]))
-    device = torch.device("cuda")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info('device: {}'.format(device))
     n_gpu = torch.cuda.device_count()
     logger.info('n_gpu: {}'.format(n_gpu))
