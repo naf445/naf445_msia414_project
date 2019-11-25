@@ -7,6 +7,7 @@ import git
 import glob
 import json
 import os
+import torch
 ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
 import sys
 sys.path.append(os.path.join(ROOT, 'src'))
