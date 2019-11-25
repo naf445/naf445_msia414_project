@@ -23,9 +23,12 @@ with open(os.path.join(ROOT, 'config', 'config.yml'), "r") as yml_file:
 
 if __name__ == '__main__':
     
-    os.environ["CUDA_VISIBLE_DEVICES"] = config['cuda_device']
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(config['cuda_device'])
+    logger.info('CUDA_VISIBLE_DEVICES: {}'.format(os.environ["CUDA_VISIBLE_DEVICES"]))
     device = torch.device("cuda")
+    logger.info('device: {}'.format(device))
     n_gpu = torch.cuda.device_count()
+    logger.info('n_gpu: {}'.format(n_gpu))
     
     # Load religioBERT or other model from Disk
     model = SentenceTransformer(os.path.join(ROOT, config['model_directory']))
