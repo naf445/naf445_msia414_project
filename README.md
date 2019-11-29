@@ -29,22 +29,30 @@ The data comes from 2 didfferent sources. One is a kaggle page with 5 of the tex
 
 ### CPU Machine:
 
-1)
+1) Create/Activate conda environment
+```bash
+conda env create environment_cpu.yml
+```
+
 ```bash
 source activate text-project-cpu
 ```
 
-2)
+2) Retrieve some data
+
+
 ```bash
 python 1-get-data.py
 ```
 
-3)
+3) Retrieve rest of data (you will first have to configure [kaggle command line](https://github.com/Kaggle/kaggle-api))
+
 ```bash
 kaggle datasets download tentotheminus9/religious-and-philosophical-texts --unzip --path data/raw_data/
 ```
 
-4)
+4) Rename texts grabbed from Kaggle 
+
 ```bash
 mv data/raw_data/35895-0.txt data/raw_data/buddha_raw.txt;
 mv data/raw_data/pg10.txt data/raw_data/bible_raw.txt;
@@ -53,59 +61,91 @@ mv data/raw_data/pg2680.txt data/raw_data/meditations_raw.txt;
 mv data/raw_data/pg2800.txt data/raw_data/quran_raw.txt;
 ```
 
-5 ) Run from Root
+5 ) Run from root folder, to create cleaned version of texts ready for BERT model, both separate versions and one large combined version.
+
 ```bash
 python src/2-create-cleaned-texts.py
 ```
 
 6 )
-- Send file to GPU machine
-- Place newly created `data/cleaned_and_combined.txt` in same spot on GPU machine
+- Send `cleaned_and_combined.txt` to GPU machine for continued BERT pre-training
+- Place in `data/cleaned_and_combined.txt` on GPU machine
 
 ### GPU Machine:
 
-7 )
+7 ) Create/Activate GPU conda environment
+
+```bash
+conda env create environment_gpu.yml
+```
+
 ```bash
 source activate text-project-gpu
 ```
 
-8 ) Run from root directory
+8 ) Run from root directory, to prepare GPU machine for BERT pre-training
 ```bash
 source config/pre_train_settings.sh
 ```
 
-9 ) Run from root directory
+9 ) Run from root directory to initiate BERT pretraining. (You will have to have [hyperdash](https://hyperdash.io) installed and configured). You could do it without hypderdash but hyperdash is cool...
+
 ```bash
 hyperdash run -n 'BERT_pretrain' python src/3-pretrain-religioBERT.py --train_corpus $TRAIN_CORPUS --bert_model $BERT_MODEL --output_dir $OUTPUT_DIR --do_train --do_lower_case --cuda_device $CUDA_DEVICE
 ```
 
-10 ) Send the further pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
-
-### CPU Machine:
+10 ) 
+- Now we will need to change our directory structure a bit in order to prepare things for generating our sentence embeddings using religioBERT.
+- First download one of these files, probably `bert-base-nli-mean-tokens.zip` from https://public.ukp.informatik.tu-darmstadt.de/reimers/sentence-transformers/v0.2/
+- Place this unzipped folder in a new folder in your project repository, `data/bert-base-nli-mean-tokens/`
+- Delete everything from `data/bert-base-nli-mean-tokens/0_BERT/`,  **except for the file** `data/bert-base-nli-mean-tokens/0_BERT/sentence_bert_config.json`
+- Place everything that was in `pretraining_output/best` in the now almost empty `data/bert-base-nli-mean-tokens/0_BERT`
+- Delete the now completely empty `pretraining_output/best/`
+- Change name of `data/bert-base-nli-mean-tokens/` to `data/pretraining_output/`
 
 11 ) 
-- Now on CPU machine with religioBERT `pretraining_output/best/` folder in place, we will need to change this directory structure a bit in order to prepare things for generating our sentence embeddings using religioBERT.
-- First download one of the files, probably `bert-base-nli-mean-tokens.zip` from https://public.ukp.informatik.tu-darmstadt.de/reimers/sentence-transformers/v0.2/
-- Place this unzipped folder in a new folder, `data/bert-base-nli-mean-tokens/`
-- Delete everything from the 0_BERT folder within `data/bert-base-nli-mean-tokens/` **except** `sentence_bert_config.json`
-- Place everything that was in `pretraining_output/best` in `data/bert-base-nli-mean-tokens/0_BERT`
-- Delete the now empty `pretraining_output/best/`
+- Now we can use religioBERT to get embeddings for input texts. Right now we are just going to do this for one religious text, and we will do it on the GPU because it is much faster.
+- To set this up, we need our text file placed in `data/cleaned_data/ready_for_scoring/`, comprised of lines of words or sentences separated by a new line character.
+- This can be accomplished prior to this step (for example, the output of `src/2-create-cleaned-texts.py` is in this form), or it will be done automatically at the time of running. 
+- To do at this time, run the following:
+
+```bash
+python src/4-preprocess-new-text.py
+```
+
+12 ) Score new text and save output
+- Once your cleaned text data has been placed in `data/cleaned_data/ready_for_scoring/`, head to the `config.yml` file and make sure `data_out_file_names:` has listed as many output files as you have input files, and the names are as you want them to appear.
+- Run from root directory
+```bash
+python src/5-score-and-store-texts-religioBERT.py
+```
+- This script will return a serialized python dictionary object as an output file (one file for each of the input files) with each of these lines as keys and the associated BERT embeddings as values.
+
+
+13 ) Send the further-pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
+
+### CPU Machine:
 
 12 ) 
 ```bash
 source activate text-project-cpu
 ```
 
-13 ) Run from root directory
-```bash
-python src/4-score-and-store-texts-religioBERT.py
-```
+13 )
 
 ```bash
-python src/5-score-and-store-texts-baseBERT.py
+python src/6-plot-embeddings-religioBERT.py
 ```
 
-14 ) Run from root directory
+14 ) Let's do the same for baseBERT
+```bash
+python src/7-score-and-store-texts-baseBERT.py
+```
+```bash
+python src/8-plot-embeddings-baseBERT.py
+```
+
+15 ) Run from root directory
 ```bash
 python src/6-get-query-neighbors.py --religious_text <RELIGIOUS_TEXT>
 ```

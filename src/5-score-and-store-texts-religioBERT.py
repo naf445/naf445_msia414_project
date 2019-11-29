@@ -7,6 +7,7 @@ import git
 import glob
 import json
 import os
+import pickle
 import torch
 ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
 import sys
@@ -35,10 +36,10 @@ if __name__ == '__main__':
     model.to(device)
     model.eval()
     text_index = 0
-    for religious_text_file_name in glob.glob(os.path.join(ROOT, 'data', 'cleaned_data' ,"*.txt")):
+    for religious_text_file_name in glob.glob(os.path.join(ROOT, config['data_in_directory'], "*.txt")):
         logger.info("Getting embeddings for every sentence in {}".format(religious_text_file_name))
         religious_text_sentences = []
-        with open(os.path.join(ROOT, 'data', 'cleaned_data', religious_text_file_name), 'r') as file:
+        with open(os.path.join(ROOT, config['data_in_directory'], religious_text_file_name), 'r') as file:
             for line in file:
                 religious_text_sentences.append(line.strip())
         len_text = len(religious_text_sentences)
@@ -48,7 +49,7 @@ if __name__ == '__main__':
         religious_text_dictionary = {}
         line_num = 1
         for sentence, embedding in zip(religious_text_sentences, religious_text_embeddings):
-            religious_text_dictionary[str(embedding)] = sentence
+            religious_text_dictionary[sentence] =  [round(embedding_num, 6) for embedding_num in list(embedding)]
             line_num+=1
             perc_complete = round(line_num/len_text*100, 2)
             if perc_complete>9.9 and perc_complete<10.1:
@@ -60,6 +61,6 @@ if __name__ == '__main__':
             if perc_complete>89.9 and perc_complete<90.1:
                 logger.info('Done with {}%'.format(perc_complete))
         with open(os.path.join(ROOT, 'data', 'religioBERT_scored_texts',\
-                               config['data_out_file_names'][text_index]), 'w') as json_output:
-            json.dump(religious_text_dictionary, json_output, indent=4)
+                               config['data_out_file_names'][text_index]), 'wb') as pkl_output:
+            pickle.dump(religious_text_dictionary, pkl_output)
         text_index+=1
