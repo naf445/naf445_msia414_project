@@ -35,6 +35,7 @@ if __name__ == '__main__':
     model = SentenceTransformer(os.path.join(ROOT, config['model_directory']))
     model.to(device)
     model.eval()
+    print('hi!')
     text_index = 0
     for religious_text_file_name in glob.glob(os.path.join(ROOT, config['data_in_directory'], "*.txt")):
         logger.info("Getting embeddings for every sentence in {}".format(religious_text_file_name))
