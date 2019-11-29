@@ -38,6 +38,7 @@ if __name__ == '__main__':
     print('hi!')
     text_index = 0
     for religious_text_file_name in glob.glob(os.path.join(ROOT, config['data_in_directory'], "*.txt")):
+        print('HI AGAIN!')
         logger.info("Getting embeddings for every sentence in {}".format(religious_text_file_name))
         religious_text_sentences = []
         with open(os.path.join(ROOT, config['data_in_directory'], religious_text_file_name), 'r') as file:
