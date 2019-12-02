@@ -113,7 +113,7 @@ hyperdash run -n 'BERT_pretrain' python src/3-pretrain-religioBERT.py --train_co
 python src/4-preprocess-new-text.py
 ```
 
-12 ) Score new text and save output
+12 ) Score new text with ReligioBERT and save output
 - Once your cleaned text data has been placed in `data/cleaned_data/ready_for_scoring/`, head to the `config.yml` file and make sure `data_out_file_names:` has listed as many output files as you have input files, and the names are as you want them to appear.
 - Run from root directory
 ```bash
@@ -121,6 +121,11 @@ python src/5-score-and-store-texts-religioBERT.py
 ```
 - This script will return a serialized python dictionary object as an output file (one file for each of the input files) with each of these lines as keys and the associated BERT embeddings as values.
 
+13 ) Score new text w/ baseBERT and save output
+- Change config  Run from root directory
+```bash
+python src/6-score-and-store-texts-baseBERT.py
+```
 
 13 ) 
 - Send the further-pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.

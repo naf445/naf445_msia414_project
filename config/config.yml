@@ -69,29 +69,10 @@ src:
         model_directory: model/pretraining_output/
         data_out_file_names:
             - phrases_religioBERT.pkl
-            - practice_religioBERT.pkl
-#             - analects_religioBERT_embeddings.pkl
-#             - bible_OT_religioBERT_embeddings.pkl
-#             - bible_NT_religioBERT_embeddings.pkl
-#             - buddha_religioBERT_embeddings.pkl
-#             - egypt_religioBERT_embeddings.pkl
-#             - gita_religioBERT_embeddings.pkl
-#             - meditations_religioBERT_embeddings.pkl
-#             - mormon_religioBERT_embeddings.pkl
-#             - quran_religioBERT_embeddings.pkl
-#             - tibet_religioBERT_embeddings.pkl
         cuda_device: "2"
     score_and_store_texts_baseBERT:
         data_in_directory: data/cleaned_data/ready_for_scoring/
         model_directory: model/pretraining_output/
         data_out_file_names:
             - analects_baseBERT_embeddings.pkl
-            - bible_OT_baseBERT_embeddings.pkl
-            - bible_NT_baseBERT_embeddings.pkl
-            - buddha_baseBERT_embeddings.pkl
-            - egypt_baseBERT_embeddings.pkl
-            - gita_baseBERT_embeddings.pkl
-            - meditations_baseBERT_embeddings.pkl
-            - mormon_baseBERT_embeddings.pkl
-            - quran_baseBERT_embeddings.pkl
-            - tibet_baseBERT_embeddings.pkl
+        cuda_device: "2"

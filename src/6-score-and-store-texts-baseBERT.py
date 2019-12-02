@@ -20,7 +20,7 @@ with open(os.path.join(ROOT, 'config', 'config.yml'), "r") as yml_file:
     logging.config.fileConfig(os.path.join(
         ROOT, config['logger']), disable_existing_loggers=False)
     logger = logging.getLogger(__name__)
-    config = config['src']['score_and_store_texts_religioBERT']
+    config = config['src']['score_and_store_texts_baseBERT']
 
 if __name__ == '__main__':
     
