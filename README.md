@@ -122,7 +122,9 @@ python src/5-score-and-store-texts-religioBERT.py
 - This script will return a serialized python dictionary object as an output file (one file for each of the input files) with each of these lines as keys and the associated BERT embeddings as values.
 
 
-13 ) Send the further-pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
+13 ) 
+- Send the further-pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
+- Also send the cleaned religious texts which you want to your CPU machine and place in `data/religioBERT_scored_texts/`
 
 ### CPU Machine:
 
