@@ -13,7 +13,8 @@ import os
 import pickle
 import scipy
 import torch
-ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
+#ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
+ROOT = '.'
 import sys
 sys.path.append(os.path.join(ROOT, 'src'))
 sys.path.append(os.path.join(ROOT, 'src', 'helpers'))
