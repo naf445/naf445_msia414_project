@@ -175,12 +175,15 @@ curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence=="t
 - May need to `source .bash_profile` after adding `PATH=$PATH:$HOME/z/heroku/bin:$HOME/bin` to it
 - run `heroku login
 - run `heroku create`
-- run `git push heroku master`
 - make sure build pack is present
     + may need to `pip freeze > requirements.txt` from your activate conda environment
 - within this `requirements.txt` file, you may need to replace pytorch with the cpu version:
     + `https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl`
-- 
+- run `git push heroku master`
+- from separate command line, run 
+```bash
+curl -X POST https://religio-bert.herokuapp.com/ -d model_choice="base" -d input_sentence=="test sentence"
+```
 
 
 ## Data
