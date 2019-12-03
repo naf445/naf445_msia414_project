@@ -173,7 +173,11 @@ curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence=="t
 - Create Heroku account and app
 - Install Heroku command line on a local machine
 - May need to `source .bash_profile` after adding `PATH=$PATH:$HOME/z/heroku/bin:$HOME/bin` to it
-- run `heroku login`
+- run `heroku login
+- run `heroku create`
+- run `git push heroku master`
+- make sure build pack is present
+    + may need to `pip freeze > requirements.txt` from your activate conda environment
 
 
 
