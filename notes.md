@@ -66,6 +66,7 @@
 _____
 ## Deploying my model with a REST api via flask and heroku!
 Following : https://towardsdatascience.com/deploying-a-machine-learning-model-as-a-rest-api-4a03b865c166
+And: https://towardsdatascience.com/designing-a-machine-learning-model-and-deploying-it-using-flask-on-heroku-9558ce6bde7b
 
 - We are using Flask RESTful
 - We need a python script which constructs our app

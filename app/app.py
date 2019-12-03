@@ -33,21 +33,23 @@ api = Api(app)
 
 # Request parsing
 parser = reqparse.RequestParser()
-parser.add_argument("--model_choice",
+parser.add_argument("model_choice",
                     help="Options: 'base' or 'religio'. Chooses which model to use for scoring and finding the relevant passage with.",
                    type=str,
                    choices=['base','religio'])
-parser.add_argument("--input_sentence",
+parser.add_argument("input_sentence",
                     help="Sentence you wish to be matched with a relevant Analects passage.",
                    type=str)
-args = parser.parse_args()
-
-# Create instance of model to be used for predictions
-model = SentenceTransformer('bert-base-nli-mean-tokens') if args.model_choice == 'base' else SentenceTransformer(os.path.join(ROOT, config['model_directory']))
-model.eval()
 
 class GiveAnalectPassage(Resource):
-    def get(self):
+    def post(self):
+        
+        args = parser.parse_args()
+        print('hihihihihihihihi')
+        print(args)
+        # Create instance of model to be used for predictions
+        model = SentenceTransformer('bert-base-nli-mean-tokens') if args['model_choice'] == 'base' else SentenceTransformer(os.path.join(ROOT, config['model_directory']))
+        model.eval()
 
         # handle user input
         input_sentence = [args.input_sentence]
@@ -58,7 +60,7 @@ class GiveAnalectPassage(Resource):
         output_dict['input_sentence'] = input_sentence[0]
         input_embedding = [round(embedding_num, 6) for embedding_num in list(input_embedding[0])]
         
-        with open(os.path.join(ROOT,config['analects_file']['base'] if args.model_choice == 'base' else config['analects_file']['religio']), 'rb') as pkl_file:
+        with open(os.path.join(ROOT,config['analects_file']['base'] if args['model_choice'] == 'base' else config['analects_file']['religio']), 'rb') as pkl_file:
             analects_loaded = pickle.load(pkl_file)
 
         analects_sentences = list(analects_loaded.keys())
@@ -80,4 +82,4 @@ api.add_resource(GiveAnalectPassage, '/')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)
