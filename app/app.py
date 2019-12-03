@@ -86,4 +86,4 @@ if __name__ == '__main__':
     # For local run below
     ##app.run(host='127.0.0.1', port=8080, debug=True)
     # For Heroku run below
-    app.run(host='0.0.0.0', posrt=os.environ['PORT'], debug=True)
+    app.run(host='0.0.0.0', port=os.environ['PORT'], debug=True)
