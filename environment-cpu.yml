@@ -1,18 +1,17 @@
 name: text-project-cpu
 channels:
-  - conda-forge
   - pytorch
+  - conda-forge
   - defaults
 dependencies:
   - aniso8601=8.0.0
   - ca-certificates=2019.11.28
-  - certifi=2019.11.28
   - flask-restful=0.3.7
-  - openssl=1.1.1d
   - _libgcc_mutex=0.1
   - backcall=0.1.0
   - beautifulsoup4=4.8.1
   - blas=1.0
+  - certifi=2019.11.28
   - cffi=1.13.2
   - click=7.0
   - cycler=0.10.0
@@ -66,6 +65,7 @@ dependencies:
   - numpy=1.17.3
   - numpy-base=1.17.3
   - olefile=0.46
+  - openssl=1.1.1d
   - parso=0.5.1
   - pcre=8.43
   - perl=5.26.2
@@ -112,6 +112,7 @@ dependencies:
     - botocore==1.13.26
     - chardet==3.0.4
     - docutils==0.15.2
+    - gunicorn==20.0.4
     - hyperdash==0.15.3
     - idna==2.8
     - jmespath==0.9.4

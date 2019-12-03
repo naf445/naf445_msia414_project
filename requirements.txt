@@ -5,6 +5,7 @@ Flask==1.1.1
 Flask-RESTful==0.3.7
 gitdb2==2.0.6
 GitPython==3.0.5
+gunicorn==20.0.4
 hyperdash==0.15.3
 jedi==0.15.1
 Jinja2==2.10.3
