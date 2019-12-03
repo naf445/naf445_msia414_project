@@ -2,7 +2,8 @@ import git
 import logging
 import logging.config
 import os
-ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
+#ROOT = git.Repo('.', search_parent_directories=True).working_tree_dir + '/'
+ROOT = '.'
 import re
 import string
 import sys
