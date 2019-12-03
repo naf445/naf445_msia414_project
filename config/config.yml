@@ -66,13 +66,28 @@ src:
         data_out_directory: data/cleaned_data/ready_for_scoring/
     score_and_store_texts_religioBERT:
         data_in_directory: data/cleaned_data/ready_for_scoring/
-        model_directory: model/pretraining_output/
+        model_directory: model/religioBERT_pretraining_output/
         data_out_file_names:
-            - phrases_religioBERT.pkl
+            - TSNE_phrase_comp_religioBERT.pkl
         cuda_device: "2"
     score_and_store_texts_baseBERT:
         data_in_directory: data/cleaned_data/ready_for_scoring/
-        model_directory: model/pretraining_output/
         data_out_file_names:
-            - analects_baseBERT_embeddings.pkl
+            - TSNE_phrase_comp_baseBERT.pkl
         cuda_device: "2"
+    plot_TSNEs:
+        data_in_religioBERT: data/religioBERT_scored_texts/TSNE_phrase_comp_religioBERT.pkl
+        data_in_baseBERT: data/baseBERT_scored_texts/TSNE_phrase_comp_baseBERT.pkl
+        plots_store_out:
+            base: model/TSNE_plots/base_TSNE.png
+            religio: model/TSNE_plots/religio_TSNE.png
+    score_and_serve:
+        model_directory: model/religioBERT_pretraining_output/
+        analects_file:
+            base: data/baseBERT_scored_texts/analects_baseBERT_embeddings.pkl
+            religio: data/religioBERT_scored_texts/analects_3epoch_religioBERT.pkl
+app:
+    model_directory: model/religioBERT_pretraining_output/
+    analects_file:
+        base: data/baseBERT_scored_texts/analects_baseBERT_embeddings.pkl
+        religio: data/religioBERT_scored_texts/analects_3epoch_religioBERT.pkl

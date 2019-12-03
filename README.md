@@ -122,40 +122,49 @@ python src/5-score-and-store-texts-religioBERT.py
 - This script will return a serialized python dictionary object as an output file (one file for each of the input files) with each of these lines as keys and the associated BERT embeddings as values.
 
 13 ) Score new text w/ baseBERT and save output
-- Change config  Run from root directory
+- Change `config:src:score_and_store_texts_baseBERT:data_out_file_names` to `analects_baseBERT_embeddings.pkl`
+- Run from root directory
 ```bash
 python src/6-score-and-store-texts-baseBERT.py
 ```
 
-13 ) 
+14 ) Send files/models to CPU machine
 - Send the further-pretrained religioBERT `model/pretraining_output/best` folder to CPU machine, place in `model/pretraining_output/best/`.
-- Also send the cleaned religious texts which you want to your CPU machine and place in `data/religioBERT_scored_texts/`
+- Also send the cleaned religious texts (one scored with baseBERT and one with religioBERT) which you want to your CPU machine and place in `data/religioBERT_scored_texts/` and `data/baseBERT_scored_texts/`
 
 ### CPU Machine:
 
-12 ) 
+15 ) 
 ```bash
 source activate text-project-cpu
 ```
 
-13 )
-
+16 ) Place phrases to be visualized in `data/cleaned_data/ready_for_scoring/`
+- Can run if needed:
 ```bash
-python src/6-plot-embeddings-religioBERT.py
+python src/4-preprocess-new-text.py
+```
+- Then run the following three items:
+```bash
+python src/5-score-and-store-texts-religioBERT.py
+```
+```bash
+python src/6-score-and-store-texts-baseBERT.py
+```
+```bash
+python src/7-plot-TSNEs.py
 ```
 
-14 ) Let's do the same for baseBERT
+17 ) To use python script from command line for one off predictions, can use:
 ```bash
-python src/7-score-and-store-texts-baseBERT.py
-```
-```bash
-python src/8-plot-embeddings-baseBERT.py
+python src/8-score-and-serve.py --model_choice <'base' or 'religio'> --input_sentence <sentence> 
 ```
 
-15 ) Run from root directory
+18 ) To deploy model to web server, run from ROOT:
 ```bash
-python src/6-get-query-neighbors.py --religious_text <RELIGIOUS_TEXT>
+python app/app.py
 ```
+
 
 ## Data
 

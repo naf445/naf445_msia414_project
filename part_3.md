@@ -7,12 +7,6 @@ For my NLP task, I have chosen to work with vector representations of words/sent
 
 My experiments involve comparing the performance of the uncased base BERT pre-trained model (12-layer, 768-hidden, 12-heads, 110M parameters) with a custom ReligioBERT model which begins with this baseBERT model and continues the pre-training step on a religious corpus. This religious corpus consisted of 10 religious texts, with details for each document found in the `README` of the code repository. The motivation for this approach comes from SciBERT, which trained a BERT model on a corpus of scientific documents, in order to get word embeddings which were more specialized for the types of vocabulary, syntax, and other language characteristics from this scientific world. Because eventually I wanted my word embeddings to be good at applying to religious words and concepts, and these words/concepts may not have been plentiful in the original corpus which BERT was trained on, I commenced with these further pre-training steps. Below is a comparison of how baseBERT compared with my ReligioBERT model in a couple of tasks.
 
-### Word Math
-
-#### baseBERT
-
-#### ReligioBERT
-
 ### TSNE Visualizations
 
 #### baseBERT

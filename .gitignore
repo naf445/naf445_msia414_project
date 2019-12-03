@@ -5,3 +5,5 @@ data/*.txt
 data/raw_data/*.txt
 data/
 model/pretraining_output/
+model/TSNE_plots
+model/religioBERT_pretraining_output

@@ -64,3 +64,19 @@
 ## GPT-2:
 
 _____
+## Deploying my model with a REST api via flask and heroku!
+Following : https://towardsdatascience.com/deploying-a-machine-learning-model-as-a-rest-api-4a03b865c166
+
+- We are using Flask RESTful
+- We need a python script which constructs our app
+- In this script we need to accopmlish some things
+    + Create an app and api instance
+    + We need to load in our model object, however we see fit
+    + Create an argument parser, but this argparse is for request parsing, not just for arg parsing
+    + We need to create a new class which inherits from the flask_restful class `resource`, this is the meat of Flas RESTful api's.
+    + This class will have methods which correspond to the HTTP `GET`/`PUT`/`POST` etc...
+    + For example, in a method we define called `get` in this class, we could provide directions on how to handle the user’s input and how to package a JSON object to be returned.
+    + We must assign the resource to URLs, so we can assign our resource created to the base URL
+    + In an if __name__ == '__main__' chunk we need an app.run() call
+
+

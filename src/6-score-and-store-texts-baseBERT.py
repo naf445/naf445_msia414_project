@@ -60,7 +60,7 @@ if __name__ == '__main__':
                 logger.info('Done with {}%'.format(perc_complete))
             if perc_complete>89.9 and perc_complete<90.1:
                 logger.info('Done with {}%'.format(perc_complete))
-        with open(os.path.join(ROOT, 'data', 'religioBERT_scored_texts',\
+        with open(os.path.join(ROOT, 'data', 'baseBERT_scored_texts',\
                                config['data_out_file_names'][text_index]), 'wb') as pkl_output:
             pickle.dump(religious_text_dictionary, pkl_output)
         text_index+=1
