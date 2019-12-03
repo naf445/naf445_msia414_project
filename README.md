@@ -160,7 +160,7 @@ python src/7-plot-TSNEs.py
 python src/8-score-and-serve.py --model_choice <'base' or 'religio'> --input_sentence <sentence> 
 ```
 
-18 ) To deploy model to web server, run from ROOT:
+18 ) To deploy model to local server, run from ROOT:
 ```bash
 python app/app.py
 ```
@@ -168,6 +168,14 @@ python app/app.py
 ```bash
 curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence=="test sentence"
 ```
+
+19 ) To deploy model to Heroku:
+- Create Heroku account and app
+- Install Heroku command line on a local machine
+- May need to `source .bash_profile` after adding `PATH=$PATH:$HOME/z/heroku/bin:$HOME/bin` to it
+- run `heroku login`
+
+
 
 
 ## Data
