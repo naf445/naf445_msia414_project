@@ -83,4 +83,7 @@ api.add_resource(GiveAnalectPassage, '/')
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    # For local run below
+    ##app.run(host='127.0.0.1', port=8080, debug=True)
+    # For Heroku run below
+    app.run(debug=True)
