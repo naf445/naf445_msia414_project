@@ -7,3 +7,4 @@ data/
 model/pretraining_output/
 model/TSNE_plots
 model/religioBERT_pretraining_output
+src/helpers/__pycache__/*
