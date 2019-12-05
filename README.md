@@ -166,7 +166,7 @@ python app/app.py
 ```
 
 ```bash
-curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence=="test sentence"
+curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence="test sentence"
 ```
  
 19 ) To deploy model to Heroku:
@@ -182,7 +182,7 @@ curl -X POST http://127.0.0.1:8080/ -d model_choice="base" -d input_sentence=="t
 - run `git push heroku master`
 - from separate command line, run 
 ```bash
-curl -X POST https://religio-bert.herokuapp.com/ -d model_choice="base" -d input_sentence=="test sentence"
+curl -X POST https://religio-bert.herokuapp.com/ -d model_choice="base" -d input_sentence="test sentence"
 ```
 
 
