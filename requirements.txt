@@ -8,7 +8,7 @@ GitPython==3.0.5
 gunicorn==20.0.4
 hyperdash==0.15.3
 jedi==0.15.1
-Jinja2==2.10.3
+Jinja2==2.11.3
 matplotlib==3.1.1
 numpy==1.17.3
 pickleshare==0.7.5
